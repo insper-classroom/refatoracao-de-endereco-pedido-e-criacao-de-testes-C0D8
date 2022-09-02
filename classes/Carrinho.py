@@ -22,10 +22,26 @@ class Carrinho:
     def adicionar_item(self, item:Produto, qtd):
         
         id = item.get_id()
+        qtd = qtd
+        self.__itens[f'{id}'] = qtd
+        print(str(self.__itens))
         
         # Implemente a adição do item no dicionário
-        
+    def __str__(self):
+        return str(self.__itens)
 
     def remover_item(self, item:Produto):
-        pass
+
+        del self.__itens[f'{item}']
+
         # Implemente este método
+
+    @property
+    def itens (self) :
+        return self.__itens
+
+    @itens.getter
+    def itens (self):
+        return self.__itens
+
+        

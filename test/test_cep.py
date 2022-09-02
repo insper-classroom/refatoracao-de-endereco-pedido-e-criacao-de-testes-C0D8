@@ -19,9 +19,9 @@ def test_quantidade_de_numeros_errada ():
 def test_cep_como_string ():
     
     cep = '23555063'
-    endereco = Endereco(cep, 37, 'Fomento', 'RJ', 'Rio de Janeiro','Casa')
+    endereco = Endereco(cep, 37)
 
-    assert isinstance(endereco, Endereco)
+    assert endereco.rua == 'Rua Fomento'
 
 
 def test_endereco_sem_numero ():
@@ -49,15 +49,17 @@ def test_cep_como_int ():
     cep = 23555063
     endereco = Endereco(cep,37)
     
-    assert isinstance(endereco, Endereco)
+    assert endereco.rua == 'Rua Fomento'
 
 def test_cep_como_int_comecando_com_zero ():
     
     cep = 4552040
     endereco = Endereco(cep,37)
     
+    assert endereco.rua == "Rua Elvira Ferraz"
     
-    assert isinstance(endereco, Endereco)
+    
+    
 
 def test_cep_inexistente ():
 

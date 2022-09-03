@@ -18,7 +18,7 @@ def test_remover_endereco () :
     p.remover_endereco('casa')
     assert len(p.listar_enderecos()) == 0 
 
-
+4   
 def test_listar_enderecos ():
 
     end = Endereco(23555063, 37)

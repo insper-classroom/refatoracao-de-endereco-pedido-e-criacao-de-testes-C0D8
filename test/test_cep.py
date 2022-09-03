@@ -1,9 +1,6 @@
-from classes.PessoaFisica import PessoaFisica
+
+import requests
 from classes.Endereco import Endereco
-from classes.Produto import Produto
-from classes.Carrinho import Carrinho
-from classes.Pedido import Pedido
-from classes.Pagamentos import Pagamento
 import pytest
 
 
@@ -19,9 +16,9 @@ def test_quantidade_de_numeros_errada ():
 def test_cep_como_string ():
     
     cep = '23555063'
-    endereco = Endereco(cep, 37)
+    consulta = Endereco.consultar_cep(cep) 
 
-    assert endereco.rua == 'Rua Fomento'
+    assert consulta['logradouro'] == 'Rua Fomento'
 
 
 def test_endereco_sem_numero ():
@@ -55,7 +52,7 @@ def test_cep_como_int_comecando_com_zero ():
     
     cep = 4552040
     endereco = Endereco(cep,37)
-    
+
     assert endereco.rua == "Rua Elvira Ferraz"
     
     
@@ -67,12 +64,12 @@ def test_cep_inexistente ():
     
     assert Endereco.consultar_cep(cep) == False
         
-
-# def test_sem_conexao ():
+@pytest.mark.net
+def test_sem_conexao ():
     
 
-#     with pytest.raises(socket.gaierror) as excinfo:
+    with pytest.raises(requests.exceptions.ConnectionError) as exinfo:
 
-#         end = Endereco(23555063, 37)
-#     assert "[Errno 11001] getaddrinfo failed" in str(excinfo.value)
+        Endereco(23555063, 37)
+    assert "Failed to establish a new connection" in str(exinfo.value)
 

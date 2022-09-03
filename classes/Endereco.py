@@ -64,6 +64,7 @@ class Endereco:
 
         # requisição GET na url de pesquisa do cep. Doc.: https://viacep.com.br/
         response = requests.request("GET", url_api, headers=headers, data=payload)
+        print(response.status_code)
 
         # converte a resposta json em dict
         json_resp = response.json()
@@ -75,8 +76,5 @@ class Endereco:
 
 
 
-
-
-end = Endereco(23555063,37)
 
 
